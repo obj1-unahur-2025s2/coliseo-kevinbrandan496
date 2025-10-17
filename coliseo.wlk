@@ -4,12 +4,14 @@ import armas.*
 
 
 object coliseo {
-    const grupos = #{}
-    method combateEntreGrupos(unGrupo,OtroGrupo) {
+    const property  grupos = #{}
+    method combateEntreGrupos(unGrupo,otroGrupo) {
       unGrupo.combatir(otroGrupo)
     }
     method combateDesigual(unGrupo,unGladiador) {
-      unGrupo.combatir(new Grupo(nombre="solitario",gladiadores =#{unGladiador,unGrupo}))
+    const unGrupoSolitario =(new Grupo(nombre="solitario",gladiadores =#{unGladiador,unGrupo}))
+      unGrupo.combatir(unGrupoSolitario)
+      grupos.add(unGrupoSolitario)
     }
 
     method curar() {grupos.forEach({g=>g.curar()})} 
